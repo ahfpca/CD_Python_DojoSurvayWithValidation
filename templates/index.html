@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .err {
+            color: red;
+        }
+    </style>
+    <title>Dojo Survay (with Validate)</title>
+</head>
+<body>
+    <br>
+    <br>
+    <form action="/result" method="post">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 card">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="err">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <br>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <label class="col-5" for="name">Your Name: (required)</label>
+                    <input class="col-5" type="text" name="name" id="name" placeholder="Enter your name here" value="{{ session["name"] }}">
+                    <div class="col-1"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <label class="col-5" for="location">Dojo Location:</label>
+                    <select class="col-5" name="location" id="location">
+                        {% set locVal = ["Silicon Valley", "Seattle", "Los Angeles", "Dallas", "Chicago", "Tulsa", "Tyson's Corner", "East Bay"] %}
+                        {% set locName = ["Silicon Valley, CA", "Seattle, WA", "Los Angeles, CA", "Dallas, TX", "Chicago, IL", "Tulsa, OK", "Tyson's Corner, VA", "East Bay, CA"] %}
+                        {% for i in range(0, locVal|length): %}
+                            {% if locVal[i] == session["location"]: %}
+                                <option value="{{ locVal[i] }}" selected>{{ locName[i] }}</option>
+                            {% else: %}
+                                <option value="{{ locVal[i] }}">{{ locName[i] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <div class="col-1"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <label class="col-5" for="language">Favorite Language:</label>
+                    <select class="col-5" name="language" id="language">
+                        {% set locVal = ["JavaScript", "Python", "Swift", "Ruby", "Java", "C#"] %}
+                        {% set locName = ["Java Script", "Python", "Swift", "Ruby", "Java", "C#"] %}
+                        {% for i in range(0, locVal|length): %}
+                            {% if locVal[i] == session["language"]: %}
+                                <option value="{{ locVal[i] }}" selected>{{ locName[i] }}</option>
+                            {% else: %}
+                                <option value="{{ locVal[i] }}">{{ locName[i] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <div class="col-1"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <p class="col-10">Comment (required):</p>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <textarea class="col-10" name="comment" id="comment" cols="30" rows="6">{{ session["comment"] }}</textarea>
+                    <div class="col-1"></div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <button class="col-2" type="submit">Submit</button>
+                    <div class="col-1"></div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

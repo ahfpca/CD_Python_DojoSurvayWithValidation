@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>Survay Result</title>
+    <style>
+        .title {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    </style>
+    <!-- <script type="text/javascript">
+        document.getElementById("#goBack").onclick = function () {
+            alert("hey!");
+            location.href = "/danger/";
+        };
+    </script> -->
+</head>
+<body>
+    <br>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 card">
+            <div class="row">
+                <p class="title col-6">Submitted Info</p>
+            </div>
+            <dir class="row">
+                <p class="col-6">Name:</p>
+                <p class="col-6">{{ request.form["name"] }}</p>
+            </dir>
+            <dir class="row">
+                <p class="col-6">Dojo Location:</p>
+                <p class="col-6">{{ request.form["location"] }}</p>
+            </dir>
+            <dir class="row">
+                <p class="col-6">Favorite Language:</p>
+                <p class="col-6">{{ request.form["language"] }}</p>
+            </dir>
+            <dir class="row">
+                <p class="col-6">Comment:</p>
+                <p class="col-6">{{ request.form["comment"] }}</p>
+            </dir>
+            <br>
+            <dir class="row">
+                    <p class="col-6"></p>
+                    <button type="button" class="col-4" onclick="window.location.href='/'">Go Back</button>
+                    <p class="col-2"></p>
+                </dir>
+            </div>
+        <div class="col-4"></div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
