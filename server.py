@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash
+
 app = Flask(__name__)
 app.secret_key="lkugwf8w73t5832gfiew"
 
@@ -15,14 +16,12 @@ def result():
             flash("Please enter a value for name.")
             fillSession()
             return redirect("/")
-            
 
     if len(request.form["comment"]) <= 0:
         flash("Comment can not be empty!")
         fillSession()
         return redirect("/")
         
-
     if len(request.form["comment"]) > 120:
         flash("Please keep your comment under 120 characters!")
         fillSession()
